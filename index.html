@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhotoStudio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar__left">
+        <h1>PhotoStudio</h1>
+      </div>
+
+      <div class="topbar__actions">
+        <label class="file-input-label" for="fileInput">Open Image</label>
+        <input id="fileInput" type="file" accept="image/*" />
+
+        <button id="newCanvasBtn" type="button">New Canvas</button>
+        <button id="saveBtn" type="button">Save PNG</button>
+        <button id="undoBtn" type="button">Undo</button>
+        <button id="redoBtn" type="button">Redo</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar sidebar--tools">
+        <section class="panel">
+          <h2>Tools</h2>
+          <div class="tool-grid">
+            <button class="tool-btn active" type="button" data-tool="brush">Brush</button>
+            <button class="tool-btn" type="button" data-tool="eraser">Eraser</button>
+            <button class="tool-btn" type="button" data-tool="select">Select</button>
+            <button class="tool-btn" type="button" data-tool="move">Move</button>
+            <button class="tool-btn" type="button" data-tool="text">Text</button>
+            <button class="tool-btn" type="button" data-tool="eyedropper">Picker</button>
+          </div>
+        </section>
+
+        <section class="panel" id="toolOptions">
+          <h2>Tool Options</h2>
+
+          <label>
+            Brush Size
+            <input id="brushSize" type="range" min="1" max="100" value="12" />
+          </label>
+
+          <label>
+            Color
+            <input id="brushColor" type="color" value="#4ea1ff" />
+          </label>
+
+          <label>
+            Opacity
+            <input id="opacityRange" type="range" min="0.05" max="1" step="0.05" value="1" />
+          </label>
+
+          <label>
+            Zoom
+            <input id="zoomRange" type="range" min="25" max="300" step="25" value="100" />
+          </label>
+
+          <div class="canvas-size-inputs">
+            <label>
+              Width
+              <input id="widthInput" type="number" min="64" max="4000" value="1000" />
+            </label>
+
+            <label>
+              Height
+              <input id="heightInput" type="number" min="64" max="4000" value="700" />
+            </label>
+          </div>
+
+          <label>
+            Text
+            <input id="textInput" type="text" value="Hello" placeholder="Type text to place" />
+          </label>
+
+          <button id="addTextBtn" type="button">Add Text</button>
+          <button id="clearBtn" type="button">Clear Canvas</button>
+        </section>
+      </aside>
+
+      <main class="canvas-area">
+        <div class="canvas-stage">
+          <div class="canvas-stack">
+            <canvas id="editorCanvas" width="1000" height="700"></canvas>
+            <canvas id="selectionCanvas" width="1000" height="700"></canvas>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sidebar sidebar--panels">
+        <section class="panel">
+          <h2>Layers</h2>
+          <div id="layerList"></div>
+        </section>
+
+        <section class="panel" id="filtersPanel">
+          <h2>Adjustments</h2>
+
+          <label>
+            Brightness
+            <input id="brightnessRange" type="range" min="-100" max="100" value="0" />
+          </label>
+
+          <label>
+            Contrast
+            <input id="contrastRange" type="range" min="-100" max="100" value="0" />
+          </label>
+
+          <div class="filter-actions">
+            <button id="grayscaleBtn" type="button">Grayscale</button>
+            <button id="invertBtn" type="button">Invert</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Tips</h2>
+          <ul class="tips-list">
+            <li>Upload an image or create a blank canvas.</li>
+            <li>Use Brush and Eraser for painting.</li>
+            <li>Select an area, then move it with Move.</li>
+            <li>Use Text tool or Add Text button to place text.</li>
+            <li>Save your work as PNG.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+
+    <footer id="statusBar">Ready.</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
